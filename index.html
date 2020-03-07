@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alpine Tabs</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
-      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
-      crossorigin="anonymous"
-    />
     <link rel="stylesheet" href="style.css" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
@@ -22,9 +16,9 @@
       x-data
       @colorchange="$el.style.backgroundColor = $event.detail.hex"
     >
-      <div class="card">
-        <div class="tabs" x-data="tabs()">
-          <template x-for="tab in list" :key="tab">
+      <div class="card" x-data="tabs()">
+        <div class="tabs">
+          <template x-for="tab in items" :key="tab">
             <button
               class="tab"
               x-bind:class="{ 'selected': tab === current }"
@@ -33,23 +27,43 @@
             ></button>
           </template>
         </div>
-        <div class="card-content" x-data="colors()">
-          <h5 class="title" x-bind:style="'color:' + getCurrentColor().hex">
-            Pick a color
-          </h5>
-          <div class="colors">
-            <template x-for="color in list" :key="color.name">
-              <!-- Template Literals are allowed to use with x-bindings -->
-              <div
-                class="color"
-                x-bind:style="`background-color: ${color.hex}`"
-                @click="
-                  changeColor(color.name)
-                  $dispatch('colorchange', color)
-                "
-              ></div>
-            </template>
+        <div x-show="current === 'Colors'" class="card-content">
+          <div x-data="colors()">
+            <h2 class="title" x-bind:style="'color:' + getCurrentColor().hex">
+              Pick a color
+            </h2>
+            <div class="colors">
+              <template x-for="color in list" :key="color.name">
+                <!-- Template Literals are allowed to use with x-bindings -->
+                <div
+                  class="color"
+                  x-bind:style="`background-color: ${color.hex}`"
+                  @click="
+                    changeColor(color.name)
+                    $dispatch('colorchange', color)
+                  "
+                ></div>
+              </template>
+            </div>
           </div>
+        </div>
+        <div x-show="current === 'Quotes'" class="card-content">
+          <div x-data="quotes()" x-init="fetchQuote()">
+            <div class="quote">
+              <p class="text" x-text="quote.quote"></p>
+              <p class="author" x-text="'~ ' + quote.author"></p>
+            </div>
+            <h2 class="error" x-show="Boolean(error)" x-text="error"></h2>
+            <div class="button-container">
+              <button class="button quotes-button" @click="fetchQuote()" x-show="!loading">
+                Refresh
+              </button>
+              <div x-show="loading" class="lds-dual-ring"></div>
+            </div>
+          </div>
+        </div>
+        <div x-show="current === 'About'" class="card-content">
+          <h1>About</h1>
         </div>
       </div>
     </div>

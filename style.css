@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 html,
 body,
 .content {
@@ -32,10 +36,11 @@ body,
 }
 
 .tab {
-  flex-grow: 1;
   background-color: transparent;
   border: none;
   color: #fff;
+  cursor: pointer;
+  flex-grow: 1;
   font-size: 18px;
   padding: 12px;
 }
@@ -57,7 +62,6 @@ body,
 }
 
 .title {
-  font-size: 18px;
   font-weight: 400;
   text-align: center;
 }
@@ -79,4 +83,66 @@ body,
 
 .color:hover {
   transform: scale(1.2);
+}
+
+.error {
+  color: rgb(255, 66, 66);
+  text-align: center;
+}
+
+.quote {
+  color: #424242;
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: 24px;
+}
+
+.quote > .text {
+  font-style: italic;
+}
+
+.quote > .author {
+  font-weight: 600;
+  text-align: right;
+}
+
+.button {
+  background-color: transparent;
+  border: 1px solid #3A87BB;
+  border-radius: 5px;
+  color: #3A87BB;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 24px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+/* Loader */
+.lds-dual-ring {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  border-radius: 50%;
+  border: 6px solid #424242;
+  border-color: #424242 transparent #424242 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
