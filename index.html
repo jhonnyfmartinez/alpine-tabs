@@ -17,7 +17,11 @@
     ></script>
   </head>
   <body>
-    <div class="content">
+    <div
+      class="content"
+      x-data
+      @colorchange="$el.style.backgroundColor = $event.detail.hex"
+    >
       <div class="card">
         <div class="tabs" x-data="tabs()">
           <template x-for="tab in list" :key="tab">
@@ -35,10 +39,14 @@
           </h5>
           <div class="colors">
             <template x-for="color in list" :key="color.name">
-              <!-- Template Literals are allowed to use with bindings -->
+              <!-- Template Literals are allowed to use with x-bindings -->
               <div
                 class="color"
                 x-bind:style="`background-color: ${color.hex}`"
+                @click="
+                  changeColor(color.name)
+                  $dispatch('colorchange', color)
+                "
               ></div>
             </template>
           </div>

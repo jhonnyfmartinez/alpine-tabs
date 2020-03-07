@@ -14,12 +14,9 @@ body,
   font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
-body {
-  background-color: #47a1df;
-}
-
 .content {
   align-items: center;
+  background-color: #47a1df;
   display: flex;
   padding: 48px;
 }
