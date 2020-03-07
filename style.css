@@ -123,6 +123,16 @@ body,
   text-align: center;
 }
 
+.credits {
+  padding: 12px;
+}
+
+.mention {
+  color: #3A87BB;
+  font-size: 20px;
+  text-decoration: none;
+}
+
 /* Loader */
 .lds-dual-ring {
   display: inline-block;

@@ -50,16 +50,12 @@
         <div x-show="current === 'Quotes'" class="card-content">
           <div x-data="quotes()" x-init="fetchQuote()">
             <div class="quote">
-              <p class="text" x-text="quote.quote"></p>
+              <p class="text" x-text='`"${quote.quote}"`''></p>
               <p class="author" x-text="'~ ' + quote.author"></p>
             </div>
             <h2 class="error" x-show="Boolean(error)" x-text="error"></h2>
             <div class="button-container">
-              <button
-                class="button quotes-button"
-                @click="fetchQuote()"
-                x-show="!loading"
-              >
+              <button class="button" @click="fetchQuote()" x-show="!loading">
                 Refresh
               </button>
               <div x-show="loading" class="lds-dual-ring"></div>
@@ -67,7 +63,38 @@
           </div>
         </div>
         <div x-show="current === 'About'" class="card-content">
-          <h1>About</h1>
+          <div x-data="{ open: false }" class="button-container">
+            <button x-show="!open" class="button" @click="open = true">
+              Show content
+            </button>
+            <p x-show.transition="open" class="credits">
+              A lot of thanks to
+              <a
+                class="mention"
+                href="https://twitter.com/calebporzio"
+                target="_blank"
+              >
+                @calebporzio
+              </a>
+              for this incredible and useful library.
+              <br />
+              <br />
+              <a class="mention" href="https://speckyboy.com/" target="_blank">
+                Speckyboy
+              </a>
+              for this fancy and awesome design idea.
+              <br />
+              <br />
+              And finally thanks to
+              <a
+                class="mention"
+                href="https://github.com/shevabam"
+                target="_blank"
+                >Shevabam</a
+              >
+              for an amazing Breaking Bad Quotes API.
+            </p>
+          </div>
         </div>
       </div>
     </div>
