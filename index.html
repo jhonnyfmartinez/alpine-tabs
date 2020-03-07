@@ -10,7 +10,7 @@
       integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
       defer
@@ -18,7 +18,32 @@
   </head>
   <body>
     <div class="content">
-      <h1>Alpine JS Demo</h1>
+      <div class="card">
+        <div class="tabs" x-data="tabs()">
+          <template x-for="tab in list" :key="tab">
+            <button
+              class="tab"
+              x-bind:class="{ 'selected': tab === current }"
+              x-text="tab"
+              x-on:click="changeTab(tab)"
+            ></button>
+          </template>
+        </div>
+        <div class="card-content" x-data="colors()">
+          <h5 class="title" x-bind:style="'color:' + getCurrentColor().hex">
+            Pick a color
+          </h5>
+          <div class="colors">
+            <template x-for="color in list" :key="color.name">
+              <!-- Template Literals are allowed to use with bindings -->
+              <div
+                class="color"
+                x-bind:style="`background-color: ${color.hex}`"
+              ></div>
+            </template>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="index.js"></script>
   </body>

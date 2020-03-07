@@ -1,7 +1,85 @@
-html, body, .content {
+html,
+body,
+.content {
   height: 100%;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+body {
+  background-color: #47a1df;
+}
+
 .content {
+  align-items: center;
+  display: flex;
   padding: 48px;
+}
+
+.card {
+  border-radius: 8px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tab {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 12px;
+}
+
+.tab:focus {
+  outline: none;
+}
+
+.tab.selected {
+  background-color: #fff;
+  border-radius: 8px 8px 0 0;
+  color: #424242;
+}
+
+.card-content {
+  background-color: #fff;
+  min-height: 500px;
+  padding: 48px 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.color {
+  border-radius: 50%;
+  box-shadow: 0 6px 3px rgba(0, 0, 0, 0.13);
+  cursor: pointer;
+  height: 50px;
+  margin: 0 12px;
+  width: 50px;
+}
+
+.color:hover {
+  transform: scale(1.2);
 }
