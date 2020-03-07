@@ -1,0 +1,7 @@
+html, body, .content {
+  height: 100%;
+}
+
+.content {
+  padding: 48px;
+}
