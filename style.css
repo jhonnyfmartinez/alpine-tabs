@@ -133,6 +133,20 @@ body,
   text-decoration: none;
 }
 
+.mention-alt {
+  color: #424242;
+}
+
+.footer {
+  bottom: 0;
+  color: #FFF;
+  font-size: 24px;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
 /* Loader */
 .lds-dual-ring {
   display: inline-block;
