@@ -55,7 +55,11 @@
             </div>
             <h2 class="error" x-show="Boolean(error)" x-text="error"></h2>
             <div class="button-container">
-              <button class="button quotes-button" @click="fetchQuote()" x-show="!loading">
+              <button
+                class="button quotes-button"
+                @click="fetchQuote()"
+                x-show="!loading"
+              >
                 Refresh
               </button>
               <div x-show="loading" class="lds-dual-ring"></div>

@@ -28,6 +28,8 @@ body,
 .card {
   border-radius: 8px;
   flex: 1;
+  margin: 0 auto;
+  max-width: 800px;
   overflow: hidden;
 }
 
@@ -57,7 +59,7 @@ body,
 
 .card-content {
   background-color: #fff;
-  min-height: 500px;
+  min-height: 300px;
   padding: 48px 24px;
 }
 
@@ -144,5 +146,22 @@ body,
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    padding: 12px;
+  }
+  .card-content {
+    min-height: 300px;
+    padding: 24px 0;
+  }
+  .color {
+    height: 36px;
+    width: 36px;
+  }
+  .quote {
+    max-width: unset;
   }
 }
