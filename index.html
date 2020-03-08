@@ -16,18 +16,25 @@
       x-data
       @colorchange="$el.style.backgroundColor = $event.detail.hex"
     >
-      <div class="card" x-data="tabs()">
-        <div class="tabs">
+      <div
+        class="card"
+        x-data="{ currentTab: 'Colors' }"
+        @tabchanged="currentTab = $event.detail"
+      >
+        <div class="tabs" x-data="tabs()">
           <template x-for="tab in items" :key="tab">
             <button
               class="tab"
               x-bind:class="{ 'selected': tab === current }"
               x-text="tab"
-              x-on:click="changeTab(tab)"
+              x-on:click="
+                changeTab(tab)
+                $dispatch('tabchanged', tab)
+              "
             ></button>
           </template>
         </div>
-        <div x-show="current === 'Colors'" class="card-content">
+        <div x-show="currentTab === 'Colors'" class="card-content">
           <div x-data="colors()">
             <h2 class="title" x-bind:style="'color:' + getCurrentColor().hex">
               Pick a color
@@ -47,10 +54,10 @@
             </div>
           </div>
         </div>
-        <div x-show="current === 'Quotes'" class="card-content">
+        <div x-show="currentTab === 'Quotes'" class="card-content">
           <div x-data="quotes()" x-init="fetchQuote()">
             <div class="quote">
-              <p class="text" x-text='`"${quote.quote}"`''></p>
+              <p class="text" x-text='`"${quote.quote}"`'></p>
               <p class="author" x-text="'~ ' + quote.author"></p>
             </div>
             <h2 class="error" x-show="Boolean(error)" x-text="error"></h2>
@@ -62,7 +69,7 @@
             </div>
           </div>
         </div>
-        <div x-show="current === 'About'" class="card-content">
+        <div x-show="currentTab === 'About'" class="card-content">
           <div x-data="{ open: false }" class="button-container">
             <button x-show="!open" class="button" @click="open = true">
               Show content
@@ -98,7 +105,15 @@
         </div>
       </div>
       <footer class="footer">
-        <p>Coded by <a href="https://github.com/jhonny9550" target="_blank" class="mention mention-alt">jhonny9550</a></p>
+        <p>
+          Coded by
+          <a
+            href="https://github.com/jhonny9550"
+            target="_blank"
+            class="mention mention-alt"
+            >jhonny9550</a
+          >
+        </p>
       </footer>
     </div>
     <script src="index.js"></script>
