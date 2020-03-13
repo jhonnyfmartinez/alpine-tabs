@@ -19,7 +19,7 @@
       <div
         class="card"
         x-data="{ currentTab: 'Colors' }"
-        @tabchanged="currentTab = $event.detail"
+        @tab-change="currentTab = $event.detail"
       >
         <div class="tabs" x-data="tabs()">
           <template x-for="tab in items" :key="tab">
@@ -29,7 +29,7 @@
               x-text="tab"
               x-on:click="
                 changeTab(tab)
-                $dispatch('tabchanged', tab)
+                $dispatch('tab-change', tab)
               "
             ></button>
           </template>
